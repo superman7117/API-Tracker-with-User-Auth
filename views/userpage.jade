@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Choose your Star Wars Theme
+  .page
+    .chooser
+      .luke 
+      .r2d2
+      .darth
+    .infobox  Vital Stats 
+      .stats
+  //- each val, index in
+  
+block scripts
+  script(src='/lib/firebase/firebase.js')
+  script(src="/js/userpage.js")
