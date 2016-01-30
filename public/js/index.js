@@ -7,8 +7,13 @@ function init(){
   loggedInCheck()
   $('#userPageBtn').on('click', goToUserPage)
   $("#resetPassPage").on('click', viewPassReset)
-
+  $('#splash').on('click', hideSplash)
 }
+
+function hideSplash(){
+  $("#splash").hide();
+}
+
 function viewPassReset(){
     $.get('/changepass')
     .success(function(data) {
@@ -26,11 +31,11 @@ function goToUserPage(){
 
 function loggedInCheck(){
   if(document.cookie === ''){
-    $('.registerBtn, .loginBtn').show();
+    $('.registerBtn, .loginBtn, #splash').show();
     $('.logoutBtn, .resetpassBtn, #userPageBtn').hide();
   }
   else{
-    $('.registerBtn, .loginBtn').hide();
+    $('.registerBtn, .loginBtn, #splash').hide();
     $('.logoutBtn, .resetpassBtn').show();
 
   }

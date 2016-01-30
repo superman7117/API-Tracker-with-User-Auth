@@ -59,3 +59,17 @@ body{
   color: red;
   font-family: 'Alegreya Sans SC', sans-serif;
 }
+#splash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: rgba(255, 255, 0, .5);
+  font-size: 5vw;
+  width: 100vw;
+  height: 80vh;
+  top: 15vh;
+  left: 0;
+  text-align: center;
+  color: yellow;
+}
