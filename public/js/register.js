@@ -3,11 +3,16 @@
 var $email, $password, $password2;
 
 $(function() {
+  hidelogout()
   $email = $('#email');
   $password = $('#password');
   $password2 = $('#password2');
   $('form').on('submit', registerUser);
 });
+
+function hidelogout(){
+  $(".resetpassBtn, .logoutBtn").hide();
+}
 
 function registerUser(e) {
   e.preventDefault();

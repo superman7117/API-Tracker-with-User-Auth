@@ -4,11 +4,26 @@ console.log('index.js!');
 
 $(document).ready(init);
 function init(){
+  hideLoginAndRegister()
   themecheck()
-  $(".infobox").on('click', themecheck)
   $(".luke").on('click', lukeTheme)
   $(".r2d2").on('click', r2d2Theme)
   $(".darth").on('click', darthTheme)
+  $("#resetPassPage").on('click', viewPassReset)
+
+}
+function viewPassReset(){
+    $.get('/changepass')
+    .success(function(data) {
+    })
+    .fail(function(err) {
+      alert('Error.  Check console.');
+      console.log('err:', err);
+    });
+}
+
+function hideLoginAndRegister(){
+  $(".registerBtn, .loginBtn").hide()
 }
 
 function themecheck(){

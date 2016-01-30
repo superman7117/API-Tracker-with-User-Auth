@@ -2,6 +2,7 @@ doctype html
 html
   head
     title Star Wars Theme
+    link(href='https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:900', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/style.css')
   body
@@ -20,15 +21,17 @@ html
               a(href='/') Home
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='/register') Register
+              a(href='/register' class="registerBtn") Register
             li
-              a(href='/login') Login
+              a(href='/login' class="loginBtn") Login
             li
-              a(href='/users/logout') Logout
+              a(href='/users/logout' class="logoutBtn") Logout
+            li
+              a(href='/users/changepass' class="resetpassBtn") Change Password
 
     .container
       block content
-
+    script(src='/lib/firebase/firebase.js')
     script(src='/lib/jquery/dist/jquery.min.js')
     script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
     block scripts

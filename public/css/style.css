@@ -13,12 +13,15 @@
   align-items: center;
   flex-direction: column;
   font-size: 4vw;
+  background-color: rgba(255,255,0,.8)
 }
 
 .stats {
   border: .3vw solid black;
   width: 30vw;
   height: 40vw;
+  background-color: oldlace;
+  font-size: 3.7vw;
 
 }
 
@@ -47,11 +50,12 @@
   border: .3vw solid blue;
 }
 
-.body{
+body{
+  background-image: url('http://screenrant.com/wp-content/uploads/star-wars-episode-7-image.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-}
-.stats {
-  background-color: oldlace;
+  height:110vh;
+  color: red;
+  font-family: 'Alegreya Sans SC', sans-serif;
 }

@@ -28,10 +28,54 @@ router.post('/login', function(req, res, next) {
     });
   });
 });
+router.post('/resetpass', function(req, res, next) {
+  var email = req.body.email
+  ref.resetPassword({
+    email: email
+  }, function(error) {
+    if (error) {
+      switch (error.code) {
+        case "INVALID_USER":
+          console.log("The specified user account does not exist.");
+          break;
+        default:
+          console.log("Error resetting password:", error);
+      }
+    } else {
+      console.log("Password reset email sent successfully!");
+    }
+  });
+  res.send();
+});
+router.post('/changepass', function(req, res, next) {
+  console.log('req.body', req.body);
+  var email = req.body.email;
+  var oldPassword = req.body.oldPassword;
+  var newPassword = req.body.newPassword;
+ref.changePassword({
+  email: email,
+  oldPassword: oldPassword,
+  newPassword: newPassword
+}, function(error) {
+  if (error) {
+    switch (error.code) {
+      case "INVALID_PASSWORD":
+        console.log("The specified user account password is incorrect.");
+        break;
+      case "INVALID_USER":
+        console.log("The specified user account does not exist.");
+        break;
+      default:
+        console.log("Error changing password:", error);
+    }
+  } else {
+    console.log("User password changed successfully!");
+  }
+});
+  res.send();
+});
 
 router.post('/profile', authMiddleware, function(req, res) {
-  //// logged in,   req.user
-  // console.log(req.user,"!!!!!",req.body);
   var theme = req.body.theme;
   User.findById(req.user._id, function(err, user) {
     user.theme = theme;
@@ -41,6 +85,10 @@ router.post('/profile', authMiddleware, function(req, res) {
       res.status(err ? 400 : 200).send(err || saveUser);
     });
   });
+});
+
+router.get('/changepass', function(req, res, next) {
+  res.render('changepass');
 });
 
 router.get('/logout', function(req, res, next) {
