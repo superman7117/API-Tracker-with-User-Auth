@@ -29,10 +29,17 @@ router.post('/login', function(req, res, next) {
   });
 });
 
-router.get('/profile', authMiddleware, function(req, res) {
+router.post('/profile', authMiddleware, function(req, res) {
   //// logged in,   req.user
+  // console.log(req.user,"!!!!!",req.body);
+  var theme = req.body.theme;
   User.findById(req.user._id, function(err, user) {
-    res.send(user);
+    user.theme = theme;
+    user.save(function(err, saveUser){
+      console.log("saveUser",saveUser)
+      console.log("Hello!");
+      res.status(err ? 400 : 200).send(err || saveUser);
+    });
   });
 });
 

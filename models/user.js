@@ -6,9 +6,7 @@ var JWT_SECRET = process.env.JWT_SECRET;
 
 var userSchema = new mongoose.Schema({
   uid: String,
-  user: [{
-    theme: String
-  }]
+  theme: String
 });
 
 // instance method

@@ -4,11 +4,34 @@ console.log('index.js!');
 
 $(document).ready(init);
 function init(){
+  themecheck()
+  $(".infobox").on('click', themecheck)
   $(".luke").on('click', lukeTheme)
   $(".r2d2").on('click', r2d2Theme)
   $(".darth").on('click', darthTheme)
 }
 
+function themecheck(){
+  $.get('/starwarstheme')
+  .done(function(theme){
+    if(theme === "luke"){
+      lukeTheme()
+    }
+    else if(theme === "r2d2"){
+      r2d2Theme()
+    }
+    else if(theme === "darth"){
+      darthTheme()
+    }
+    else {
+      $('.stats').text(`If you are new choose a theme to the right.
+        If not we will try to load your page again in a moment...`)
+      setTimeout(function(){
+        themecheck()
+      }, 8000)
+    }
+  })
+}
 
 function lukeTheme(){
   $('.stats').empty()
@@ -30,7 +53,8 @@ function lukeTheme(){
     $('<div>').addClass('mass').text("Mass: "+mass).appendTo(".stats")
     $('<div>').addClass('gender').text("Gender: "+gender).appendTo(".stats")
   })
-  $.post
+  $.post('/users/profile', {theme: "luke"})
+  .done()
 }
 function r2d2Theme(){
   $('.stats').empty()
@@ -50,7 +74,8 @@ function r2d2Theme(){
     $('<div>').addClass('height').text("Height: "+height).appendTo(".stats")
     $('<div>').addClass('mass').text("Mass: "+mass).appendTo(".stats")
     $('<div>').addClass('gender').text("Gender: "+gender).appendTo(".stats")
-
+    $.post('/users/profile', {theme: "r2d2"})
+    .done()
   })
 
 }
@@ -72,7 +97,8 @@ function darthTheme(){
     $('<div>').addClass('height').text("Height: "+height).appendTo(".stats")
     $('<div>').addClass('mass').text("Mass: "+mass).appendTo(".stats")
     $('<div>').addClass('gender').text("Gender: "+gender).appendTo(".stats")
-
+    $.post('/users/profile', {theme: "darth"})
+    .done()
   })
 
 }

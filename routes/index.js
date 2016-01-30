@@ -16,7 +16,8 @@ router.get('/register', function(req, res, next) {
   res.render('register');
 });
 
-router.get('/userpage', function(req, res, next) {
+router.get('/userpage', authMiddleware, function(req, res, next) {
+console.log('req.user:', req.user)
   res.render('userpage');
 });
 
