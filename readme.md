@@ -14,4 +14,4 @@ Allow authenticated users to track and manage data from an external API.  Use Mo
 - Include a descriptive readme to be displayed on your github.
 ### Make your app look nice and stylish!
 
-# heroku https://floating-dusk-17220.herokuapp.com/
+# heroku http://floating-dusk-17220.herokuapp.com/
